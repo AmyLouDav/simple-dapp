@@ -72,6 +72,36 @@ const initialize = () => {
       //will open the metamask UI
       //should disable the button while request is pending!
       await ethereum.request({ method: "eth_requestAccounts" });
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+
+      const chainIdHolder = document.getElementById("chainId");
+
+      chainIdHolder.innerHTML = chainId;
+      console.log(chainId);
+
+      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accountsHolder = document.getElementById("accounts");
+
+      accountsHolder.innerHTML = accounts;
+      console.log(accounts);
+
+      // setTimeout(() => {
+      //   const provider = async () => {
+      //     return await detectEthereumProvider();
+      //   };
+
+      //   const providerResult = provider();
+
+      //   setTimeout(() => {
+      //     if (providerResult !== window.ethereum) {
+      //       // handle provider
+      //       console.log("could be multiple wallets");
+      //     } else {
+      //       // handle no provider
+      //       console.log("no provider");
+      //     }
+      //   }, 1000);
+      // }, 1000);
     } catch (error) {
       console.log(error);
     }

@@ -211,21 +211,6 @@
       src="node_modules/@metamask/detect-provider/dist/detect-provider.js"
       defer
     ></script>
-    <script type="text/javascript">
-      const provider = async () => {
-        return await detectEthereumProvider();
-      };
-
-      const providerResult = provider();
-
-      if (providerResult) {
-        // handle provider
-        console.log(providerResult);
-      } else {
-        // handle no provider
-        console.log("no provider");
-      }
-    </script>
     <script src="contract.js" defer></script>
   </body>
 </html>
