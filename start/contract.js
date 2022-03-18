@@ -52,9 +52,17 @@ const initialize = () => {
     //on this object we have startOnboarding which will start the onboarding process for the end user
     onboarding.startOnboarding();
   };
-
   //now if the end user doesnt have the metamask extension they can install it. When they refresh the page the ethereum window object will be there and we can connect their metamask wallet to the dapp
-  
+
+  const onClickConnect = async () => {
+    try {
+      //will open the metamask UI
+      //should disable the button while request is pending!
+      await ethereum.request({ method: 'eth_requestAccounts' });
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
 
   //this function will be called when we click a button and disable it
@@ -68,8 +76,13 @@ const initialize = () => {
       //the button is now disabled
       onboardButton.disabled = false;
     } else {
-      //if it is already installed button text changes
+      //if it is already installed button text changes and ask user to connect to their wallet
       onboardButton.innerText = 'Connect!'
+      //when the button is clicked, we call this function to connect to the users metamask wallet
+      onboardButton.onclick = onClickConnect;
+      //the button is now disabled
+      onboardButton.disabled = false;
+      //now have created a function that will be called whenever we click the button to trigger a connection to our wallet, disabling the button.
     }
   };
   MetaMaskClientCheck();
