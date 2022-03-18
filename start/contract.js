@@ -33,6 +33,26 @@ The `piggybankContract` is compiled from:
 const forwarderOrigin = 'http://localhost:9010'
 
 const initialize = () => {
-  //You will start here 
+  //basic actions section
+  const onboardButton = document.getElementById('connectButton')
+  //create a fucntion to check if metamask extension installed
+  const isMetaMaskInstalled = () => {
+    //need to check ethereum binding on the window object to see if its installed
+    const { ethereum } = window;
+    return Boolean(ethereum && ethereum.isMetaMask);
+  }
+
+  const MetaMaskClientCheck = () => {
+    //now check if metamask is installed
+    if (!isMetaMaskInstalled()) {
+      //if it isnt installed then ask user to click and install it
+      onboardButton.innerText = 'Click here to install MetaMask!';
+    } else {
+      //if it is already installed button text changes
+      onboardButton.innerText = 'Connect!'
+    }
+  };
+  MetaMaskClientCheck();
 }
+
 window.addEventListener('DOMContentLoaded', initialize)
