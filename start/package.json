@@ -24,6 +24,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
     "@metamask/onboarding": "^1.0.1"
   },
   "devDependencies": {
